@@ -24,8 +24,11 @@ O site abre em http://localhost:3000 e a API em http://localhost:3001. Pesquise 
 - `GET /api/health`: verifica se a API está ativa.
 - `GET /api/weather?city=São Paulo`: retorna localização, condições atuais e previsão para cinco dias.
 - `GET /api/articles`: lista os conteúdos editoriais demonstrativos em preparação.
+- `GET /api/articles/:slug`: retorna o texto e as fontes de um artigo.
+- `GET /api/reports?city=São Paulo`: lista até 20 relatos para uma cidade.
+- `POST /api/reports`: cria um relato de clima enviado por usuário.
 
-A API busca as coordenadas pela geocodificação do Open-Meteo e consulta a previsão meteorológica. As respostas de previsão usam cache HTTP por cinco minutos.
+A API busca as coordenadas pela geocodificação do Open-Meteo e consulta a previsão meteorológica. As respostas de previsão usam cache HTTP por cinco minutos. Relatos são guardados apenas na memória durante a execução da API; reiniciar o servidor os apaga.
 
 Para usar outro endereço de API no site, copie `web/.env.example` para `web/.env.local` e ajuste `NEXT_PUBLIC_API_URL`.
 
