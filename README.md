@@ -1,34 +1,40 @@
 # Projeto Clima
 
-Plataforma de monitoramento do tempo com conteúdo sobre clima e meio ambiente. O site será a primeira experiência; um futuro aplicativo móvel consumirá a mesma API.
+Plataforma de monitoramento do tempo com conteúdo sobre clima e meio ambiente. O site é a primeira experiência; o futuro aplicativo móvel poderá consumir a mesma API.
 
-## Estrutura planejada
+## Estrutura
 
-```text
-backend/   API comum para o site e o app
-web/       site responsivo
-app/       aplicativo móvel (etapa futura)
+- `backend/`: API Node.js, TypeScript e Express.
+- `web/`: site responsivo em Next.js.
+- `app/`: futuro aplicativo móvel.
+
+## Rodar localmente
+
+Requisitos: Node.js 20 ou mais recente.
+
+```bash
+npm install
+npm run dev
 ```
 
-## Primeiras etapas
+O site abre em http://localhost:3000 e a API em http://localhost:3001. Pesquise uma cidade para ver as condições atuais e a previsão para cinco dias.
 
-1. Definir e documentar a API de previsão do tempo.
-2. Criar a integração com Open-Meteo e cache no backend.
-3. Criar listagem e páginas de artigos sobre clima e meio ambiente.
-4. Construir o site responsivo consumindo a API própria.
-5. Adicionar contas e recursos comunitários quando o produto precisar deles.
+## Rotas da API
 
-## Princípios do produto
+- `GET /api/health`: verifica se a API está ativa.
+- `GET /api/weather?city=São Paulo`: retorna localização, condições atuais e previsão para cinco dias.
 
-- A previsão, o monitoramento e os alertas são o núcleo do produto.
-- Artigos e notícias devem estar relacionados a clima e meio ambiente.
-- Relatos de usuários devem ser identificados claramente e não confundidos com alertas oficiais.
-- O backend deve servir tanto o site quanto o futuro aplicativo.
+A API busca as coordenadas pela geocodificação do Open-Meteo e consulta a previsão meteorológica. As respostas de previsão usam cache HTTP por cinco minutos.
 
-## Fonte meteorológica inicial
+Para usar outro endereço de API no site, copie `web/.env.example` para `web/.env.local` e ajuste `NEXT_PUBLIC_API_URL`.
 
-Open-Meteo é a candidata para o protótipo. Antes de uso comercial, revisar os termos e a licença vigentes: https://open-meteo.com/en/pricing
+## Princípios
 
-## Desenvolvimento
+- Previsão, monitoramento e alertas são o núcleo do produto.
+- Artigos e notícias devem estar ligados a clima e meio ambiente.
+- Relatos de usuários devem ser identificados e não confundidos com alertas oficiais.
+- O backend serve o site e o futuro aplicativo.
 
-Stack inicial proposta: Node.js + TypeScript + Express para a API e Next.js para o site. As decisões serão registradas conforme o MVP for implementado.
+## Fonte meteorológica
+
+O protótipo usa Open-Meteo. Revise os termos e a licença vigentes antes de uso comercial: https://open-meteo.com/en/pricing
