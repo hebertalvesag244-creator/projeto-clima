@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import "./article.css";
+import { apiBaseUrl } from "../../apiBase";
 
 type Article = { slug: string; category: string; title: string; summary: string; readingMinutes: number; content: string[]; source: { label: string; url: string } };
 
@@ -8,7 +9,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   let article: Article;
   try {
-    const response = await fetch("http://localhost:3001/api/articles/" + encodeURIComponent(slug), { cache: "no-store" });
+    const response = await fetch(apiBaseUrl() + "/api/articles/" + encodeURIComponent(slug), { cache: "no-store" });
     if (!response.ok) notFound();
     const result = await response.json() as { article: Article };
     article = result.article;
