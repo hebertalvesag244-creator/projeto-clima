@@ -1,0 +1,7 @@
+{
+  "name": "projeto-clima",
+  "private": true,
+  "workspaces": ["backend", "web"],
+  "scripts": {"dev": "concurrently -k \"npm:dev:backend\" \"npm:dev:web\"", "dev:backend": "npm --workspace backend run dev", "dev:web": "npm --workspace web run dev"},
+  "devDependencies": {"concurrently": "^9.1.2"}
+}
