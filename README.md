@@ -23,6 +23,7 @@ O site abre em http://localhost:3000 e a API em http://localhost:3001. Pesquise 
 
 - `GET /api/health`: verifica se a API está ativa.
 - `GET /api/weather?city=São Paulo`: retorna localização, condições atuais e previsão para cinco dias.
+- `GET /api/articles`: lista os conteúdos editoriais demonstrativos em preparação.
 
 A API busca as coordenadas pela geocodificação do Open-Meteo e consulta a previsão meteorológica. As respostas de previsão usam cache HTTP por cinco minutos.
 
