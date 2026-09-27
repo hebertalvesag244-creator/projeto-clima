@@ -28,4 +28,15 @@ app.get("/api/weather", async (request, response) => {
     return response.status(502).json({ error: "Serviço de previsão indisponível. Tente novamente em instantes." });
   }
 });
+const articles = [
+  { slug: "interpretar-chance-de-chuva", category: "Previsão", title: "Como interpretar a chance de chuva", summary: "Entenda como usar a previsão de chuva no planejamento do seu dia e o que observar além da porcentagem.", readingMinutes: 3 },
+  { slug: "tempo-e-clima", category: "Clima", title: "Tempo e clima: qual é a diferença?", summary: "Uma explicação simples para separar as condições de hoje das tendências observadas ao longo do tempo.", readingMinutes: 4 },
+  { slug: "calor-e-rotina", category: "Meio ambiente", title: "Dias de calor: como se preparar", summary: "Ideias práticas para acompanhar períodos quentes e organizar melhor as atividades do dia a dia.", readingMinutes: 3 }
+];
+
+app.get("/api/articles", (_request, response) => {
+  response.setHeader("Cache-Control", "public, max-age=300");
+  response.json({ items: articles, demo: true });
+});
+
 app.listen(port, () => console.log("API do Projeto Clima em http://localhost:" + port));
