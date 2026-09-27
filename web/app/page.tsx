@@ -1,5 +1,6 @@
 "use client";
 import ArticleSection from "./ArticleSection";
+import CommunitySection from "./CommunitySection";
 import { FormEvent, useState } from "react";
 type WeatherData = { location: { name: string; admin1?: string; country: string }; current: { temperature_2m: number; apparent_temperature: number; relative_humidity_2m: number; wind_speed_10m: number; weather_code: number }; daily: { time: string[]; weather_code: number[]; temperature_2m_max: number[]; temperature_2m_min: number[] } };
 const labels: Record<number,string> = {0:"Céu limpo",1:"Predominantemente limpo",2:"Parcialmente nublado",3:"Nublado",45:"Neblina",48:"Neblina com geada",51:"Garoa leve",53:"Garoa moderada",55:"Garoa intensa",61:"Chuva leve",63:"Chuva moderada",65:"Chuva forte",71:"Neve leve",73:"Neve moderada",75:"Neve forte",80:"Pancadas de chuva",81:"Pancadas moderadas",82:"Pancadas fortes",95:"Trovoadas",96:"Trovoadas com granizo",99:"Trovoadas fortes"};
