@@ -42,3 +42,14 @@ Para usar outro endereço de API no site, copie `web/.env.example` para `web/.en
 ## Fonte meteorológica
 
 O protótipo usa Open-Meteo. Revise os termos e a licença vigentes antes de uso comercial: https://open-meteo.com/en/pricing
+
+
+## Publicar uma prévia no Render
+
+O arquivo `render.yaml` configura o site Next.js e a API Express como dois serviços Render e conecta a URL pública da API ao site.
+
+1. Entre no Render e escolha **New → Blueprint**.
+2. Conecte o GitHub, selecione `hebertalvesag244-creator/projeto-clima` e confirme a Blueprint encontrada.
+3. Revise os dois serviços e crie o deploy.
+
+A configuração usa os planos gratuitos para uma prévia. Serviços gratuitos podem suspender após inatividade e demorar para iniciar na próxima visita. Os relatos da comunidade são mantidos apenas na memória da API e podem ser perdidos quando o serviço reiniciar.
