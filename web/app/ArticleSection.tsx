@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { apiBaseUrl } from "./apiBase";
 
 type Article = { slug: string; category: string; title: string; summary: string; readingMinutes: number };
 type ArticleResponse = { items: Article[]; demo: boolean };
@@ -11,7 +12,7 @@ export default function ArticleSection() {
   const [notice, setNotice] = useState("");
 
   useEffect(() => {
-    const api = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+    const api = apiBaseUrl();
     fetch(api + "/api/articles")
       .then(async response => {
         if (!response.ok) throw new Error("Não foi possível carregar os artigos.");
