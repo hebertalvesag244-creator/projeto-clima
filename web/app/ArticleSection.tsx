@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Article = { slug: string; category: string; title: string; summary: string; readingMinutes: number };
 type ArticleResponse = { items: Article[]; demo: boolean };
@@ -29,9 +30,9 @@ export default function ArticleSection() {
       <p>Previsão e informação caminham juntas.</p>
     </div>
     {notice && <p className="articles-notice">{notice}</p>}
-    <div className="article-grid">{articles.map((article, index) => <article className="article-card" key={article.slug}>
+    <div className="article-grid">{articles.map((article, index) => <Link className="article-card" href={"/artigos/" + article.slug} key={article.slug}>
       <div className={"article-art article-art-" + (index + 1)} aria-hidden="true"><span>{index === 0 ? "☂" : index === 1 ? "◉" : "☀"}</span></div>
       <div className="article-copy"><span className="article-category">{article.category}</span><h3>{article.title}</h3><p>{article.summary}</p><span className="article-reading">{article.readingMinutes} min de leitura <span aria-hidden="true">↗</span></span></div>
-    </article>)}</div>
+    </Link>)}</div>
   </section>;
 }
