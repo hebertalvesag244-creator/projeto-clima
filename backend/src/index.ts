@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 
 const app = express();
 const port = Number(process.env.PORT ?? 3001);
-app.use(cors({ origin: process.env.WEB_ORIGIN ?? "http://localhost:3000" }));
+app.use(cors(process.env.WEB_ORIGIN ? { origin: process.env.WEB_ORIGIN } : {}));
 app.use(express.json({ limit: "10kb" }));
 app.get("/api/health", (_request, response) => response.json({ status: "ok" }));
 
@@ -70,4 +70,4 @@ app.post("/api/reports", (request, response) => {
   return response.status(201).json({ report, verified: false });
 });
 
-app.listen(port, () => console.log("API do Projeto Clima em http://localhost:" + port));
+app.listen(port, "0.0.0.0", () => console.log("API do Projeto Clima em http://localhost:" + port));
