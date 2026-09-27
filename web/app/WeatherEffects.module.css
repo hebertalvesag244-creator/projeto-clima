@@ -1,0 +1,192 @@
+/* Camada decorativa: nunca deve capturar cliques nem cobrir texto/botões */
+.container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Sol ---------- */
+.sun {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: 130px;
+  height: 130px;
+}
+.sunCore {
+  position: absolute;
+  inset: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 214, 120, 0.85), rgba(255, 190, 80, 0.35) 60%, transparent 72%);
+  filter: blur(1px);
+  animation: sunPulse 6s ease-in-out infinite;
+}
+.sunRays {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 210, 120, 0.14) 12deg,
+    transparent 24deg,
+    transparent 60deg,
+    rgba(255, 210, 120, 0.14) 72deg,
+    transparent 84deg,
+    transparent 120deg,
+    rgba(255, 210, 120, 0.14) 132deg,
+    transparent 144deg,
+    transparent 180deg,
+    rgba(255, 210, 120, 0.14) 192deg,
+    transparent 204deg,
+    transparent 240deg,
+    rgba(255, 210, 120, 0.14) 252deg,
+    transparent 264deg,
+    transparent 300deg,
+    rgba(255, 210, 120, 0.14) 312deg,
+    transparent 324deg
+  );
+  animation: sunRotate 70s linear infinite;
+}
+@keyframes sunPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+@keyframes sunRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Nublado ---------- */
+.cloud {
+  position: absolute;
+  left: -35%;
+  width: 220px;
+  height: 60px;
+  background:
+    radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, 0.55), transparent 70%),
+    radial-gradient(ellipse at 62% 40%, rgba(255, 255, 255, 0.45), transparent 70%);
+  border-radius: 60px;
+  animation-name: cloudDrift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes cloudDrift {
+  from { transform: translateX(0); }
+  to { transform: translateX(170vw); }
+}
+
+/* ---------- Névoa ---------- */
+.fogBand {
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 90px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  filter: blur(7px);
+  animation-name: fogDrift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes fogDrift {
+  0%, 100% { transform: translateX(-4%); }
+  50% { transform: translateX(4%); }
+}
+
+/* ---------- Chuva ---------- */
+.rain {
+  position: absolute;
+  inset: 0;
+}
+.drop {
+  position: absolute;
+  top: -10%;
+  width: 2px;
+  height: 16px;
+  background: linear-gradient(to bottom, transparent, rgba(160, 200, 255, 0.55));
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes fall {
+  from { transform: translateY(-10vh); }
+  to { transform: translateY(110vh); }
+}
+
+/* ---------- Trovoada (clarão discreto) ---------- */
+.flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  animation-name: flash;
+  animation-duration: 7s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+@keyframes flash {
+  0%, 96%, 100% { background: rgba(255, 255, 255, 0); }
+  97% { background: rgba(255, 255, 255, 0.1); }
+  98% { background: rgba(255, 255, 255, 0); }
+  99% { background: rgba(255, 255, 255, 0.07); }
+}
+
+/* ---------- Frio / geada ---------- */
+.frost {
+  position: absolute;
+  inset: 0;
+}
+.frostParticle {
+  position: absolute;
+  top: -5%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(220, 240, 255, 0.9), rgba(220, 240, 255, 0.08));
+  animation-name: driftDown;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes driftDown {
+  from { transform: translateY(-5vh) translateX(0); }
+  to { transform: translateY(105vh) translateX(20px); }
+}
+
+/* ---------- Calor ---------- */
+.heat {
+  position: absolute;
+  inset: 0;
+}
+.heatGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 170, 90, 0.14), transparent 60%);
+}
+.heatShimmer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(0deg, rgba(255, 180, 100, 0.08), transparent);
+  filter: blur(2px);
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50% { transform: scaleY(1.05) translateY(-4px); }
+}
+
+/* ---------- Acessibilidade: prefers-reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sunCore, .sunRays, .cloud, .fogBand, .drop, .flash, .frostParticle, .heatShimmer {
+    animation: none !important;
+  }
+  .drop { opacity: 0.45; }
+}
+
+/* ---------- Performance em telas pequenas ---------- */
+@media (max-width: 640px) {
+  .drop:nth-child(3n) { display: none; }
+  .frostParticle:nth-child(3n) { display: none; }
+}
+
