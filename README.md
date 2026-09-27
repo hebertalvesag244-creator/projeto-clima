@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-O site abre em http://localhost:3000 e a API em http://localhost:3001. Pesquise uma cidade para ver as condições atuais e a previsão para cinco dias.
+O site abre em http://localhost:3000 e a API em http://localhost:3001. Para testar pelo celular na mesma rede Wi-Fi, abra `http://IP-DO-COMPUTADOR:3000`; a aplicação seleciona o endereço correspondente da API automaticamente. Pesquise uma cidade para ver as condições atuais e a previsão para cinco dias.
 
 ## Rotas da API
 
