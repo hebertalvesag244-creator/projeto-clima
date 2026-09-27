@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import { apiBaseUrl } from "./apiBase";
 
 type Report = { id: string; city: string; type: string; details: string; createdAt: string };
 const reportLabels: Record<string, string> = { rain: "Chuva", flooding: "Alagamento", wind: "Vento forte", clear: "Tempo aberto", other: "Outro" };
@@ -12,7 +13,7 @@ export default function CommunitySection({ defaultCity }: { defaultCity: string 
   const [reports, setReports] = useState<Report[]>([]);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-  const api = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+  const api = apiBaseUrl();
 
   useEffect(() => { setCity(defaultCity); }, [defaultCity]);
   useEffect(() => {
